@@ -1,0 +1,16 @@
+{
+  "name": "준윤😘 대시보드",
+  "short_name": "준윤😘",
+  "description": "서준·서윤 남매의 공부 용돈 적립, 오늘의 한마디, 할 일, 가족 채팅, 공부 타이머가 한 화면에",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FFF8EE",
+  "theme_color": "#FFF3E4",
+  "icons": [
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FFF3E4">
+<title>준윤😘 대시보드 🐵🐷</title>
+<meta name="description" content="서준·서윤 남매의 공부 용돈 적립, 오늘의 한마디, 할 일, 가족 채팅, 공부 타이머를 한 화면에 담은 준윤😘 대시보드">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon.svg">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=20261116a">
+</head>
+<body>
+
+<!-- ───────── 캐릭터 SVG ───────── -->
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="rabbitGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFCF7"/><stop offset="1" stop-color="#FFEFDF"/>
+    </linearGradient>
+    <linearGradient id="mouseGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBF7FF"/><stop offset="1" stop-color="#ECE2FA"/>
+    </linearGradient>
+    <linearGradient id="monkeyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBEBDA"/><stop offset="1" stop-color="#F1D5B6"/>
+    </linearGradient>
+    <linearGradient id="pigGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFF3F7"/><stop offset="1" stop-color="#FFDCE7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 엄마 : 토끼 -->
+  <symbol id="ch-rabbit" viewBox="0 0 128 128">
+    <ellipse cx="64" cy="114" rx="34" ry="7" fill="#E7CDBB" opacity=".45"/>
+    <ellipse cx="50" cy="104" rx="11" ry="7.5" fill="#FFF8F0" stroke="#E2B094" stroke-width="3"/>
+    <ellipse cx="78" cy="104" rx="11" ry="7.5" fill="#FFF8F0" stroke="#E2B094" stroke-width="3"/>
+    <g transform="rotate(-7 48 32)">
+      <ellipse cx="48" cy="32" rx="10" ry="26" fill="url(#rabbitGrad)" stroke="#E2B094" stroke-width="3.5"/>
+      <ellipse cx="48" cy="34" rx="4.2" ry="16" fill="#FFC9D8"/>
+    </g>
+    <g transform="rotate(7 80 32)">
+      <ellipse cx="80" cy="32" rx="10" ry="26" fill="url(#rabbitGrad)" stroke="#E2B094" stroke-width="3.5"/>
+      <ellipse cx="80" cy="34" rx="4.2" ry="16" fill="#FFC9D8"/>
+    </g>
+    <ellipse cx="64" cy="73" rx="38" ry="33" fill="url(#rabbitGrad)" stroke="#E2B094" stroke-width="3.5"/>
+    <ellipse cx="49" cy="69" rx="5" ry="6.5" fill="#5C463A"/>
+    <ellipse cx="79" cy="69" rx="5" ry="6.5" fill="#5C463A"/>
+    <circle cx="50.8" cy="66.4" r="1.9" fill="#fff"/>
+    <circle cx="80.8" cy="66.4" r="1.9" fill="#fff"/>
+    <ellipse cx="37" cy="82" rx="8" ry="5" fill="#FFB3C6" opacity=".85"/>
+    <ellipse cx="91" cy="82" rx="8" ry="5" fill="#FFB3C6" opacity=".85"/>
+    <path d="M60 79h8l-4 4.2z" fill="#F292A8"/>
+    <path d="M64 83.5v3.2M64 86.7c-1.8 2.6-5.2 2.4-6.2 0M64 86.7c1.8 2.6 5.2 2.4 6.2 0" fill="none" stroke="#B8896F" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 아빠 : 쥐 -->
+  <symbol id="ch-mouse" viewBox="0 0 128 128">
+    <ellipse cx="64" cy="114" rx="34" ry="7" fill="#CFC6BE" opacity=".4"/>
+    <path d="M98 92c16 3 20 14 7 19" fill="none" stroke="#D9C4E8" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="28" cy="50" r="19" fill="url(#mouseGrad)" stroke="#C6B2E3" stroke-width="3.5"/>
+    <circle cx="100" cy="50" r="19" fill="url(#mouseGrad)" stroke="#C6B2E3" stroke-width="3.5"/>
+    <circle cx="28" cy="51" r="10" fill="#FFC9D8" opacity=".9"/>
+    <circle cx="100" cy="51" r="10" fill="#FFC9D8" opacity=".9"/>
+    <ellipse cx="64" cy="74" rx="40" ry="32" fill="url(#mouseGrad)" stroke="#C6B2E3" stroke-width="3.5"/>
+    <ellipse cx="49" cy="70" rx="5" ry="6.5" fill="#574B63"/>
+    <ellipse cx="79" cy="70" rx="5" ry="6.5" fill="#574B63"/>
+    <circle cx="50.8" cy="67.4" r="1.9" fill="#fff"/>
+    <circle cx="80.8" cy="67.4" r="1.9" fill="#fff"/>
+    <ellipse cx="36" cy="83" rx="7.5" ry="4.8" fill="#FFB3C6" opacity=".8"/>
+    <ellipse cx="92" cy="83" rx="7.5" ry="4.8" fill="#FFB3C6" opacity=".8"/>
+    <ellipse cx="64" cy="80" rx="4.4" ry="3.2" fill="#E892A8"/>
+    <path d="M64 83.2v2.4M64 85.6c-1.6 2.2-4.6 2.1-5.6 0M64 85.6c1.6 2.2 4.6 2.1 5.6 0" fill="none" stroke="#A992B8" stroke-width="1.9" stroke-linecap="round"/>
+    <path d="M26 78h-9M26 85h-9M102 78h9M102 85h9" stroke="#C9B6D9" stroke-width="2" stroke-linecap="round" opacity=".85"/>
+  </symbol>
+
+  <!-- 서준 : 원숭이 -->
+  <symbol id="ch-monkey" viewBox="0 0 128 128">
+    <ellipse cx="64" cy="114" rx="34" ry="7" fill="#D8BFA6" opacity=".45"/>
+    <circle cx="24" cy="66" r="15" fill="url(#monkeyGrad)" stroke="#D9A97F" stroke-width="3.5"/>
+    <circle cx="104" cy="66" r="15" fill="url(#monkeyGrad)" stroke="#D9A97F" stroke-width="3.5"/>
+    <circle cx="24" cy="66" r="7.5" fill="#FFC9D8" opacity=".9"/>
+    <circle cx="104" cy="66" r="7.5" fill="#FFC9D8" opacity=".9"/>
+    <ellipse cx="64" cy="72" rx="39" ry="34" fill="url(#monkeyGrad)" stroke="#D9A97F" stroke-width="3.5"/>
+    <ellipse cx="64" cy="84" rx="22" ry="15" fill="#FFF7EC" opacity=".95"/>
+    <ellipse cx="49" cy="66" rx="5" ry="6.5" fill="#4F3B30"/>
+    <ellipse cx="79" cy="66" rx="5" ry="6.5" fill="#4F3B30"/>
+    <circle cx="50.8" cy="63.4" r="1.9" fill="#fff"/>
+    <circle cx="80.8" cy="63.4" r="1.9" fill="#fff"/>
+    <ellipse cx="34" cy="79" rx="7" ry="4.5" fill="#FFB3C6" opacity=".75"/>
+    <ellipse cx="94" cy="79" rx="7" ry="4.5" fill="#FFB3C6" opacity=".75"/>
+    <ellipse cx="59" cy="80" rx="2" ry="2.6" fill="#A87A5E"/>
+    <ellipse cx="69" cy="80" rx="2" ry="2.6" fill="#A87A5E"/>
+    <path d="M62 86.5c1.4 2.6 5.4 2.6 6.8 0" fill="none" stroke="#B8896F" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 서윤 : 돼지 -->
+  <symbol id="ch-pig" viewBox="0 0 128 128">
+    <ellipse cx="64" cy="114" rx="34" ry="7" fill="#E2C6C9" opacity=".45"/>
+    <path d="M32 52c-9-14 2-22 12-12l8 9z" fill="url(#pigGrad)" stroke="#EFA9BE" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M96 52c9-14-2-22-12-12l-8 9z" fill="url(#pigGrad)" stroke="#EFA9BE" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M37 47c-5-8 1-12 6-6l4 5z" fill="#FFC9D8"/>
+    <path d="M91 47c5-8-1-12-6-6l-4 5z" fill="#FFC9D8"/>
+    <ellipse cx="64" cy="74" rx="40" ry="33" fill="url(#pigGrad)" stroke="#EFA9BE" stroke-width="3.5"/>
+    <ellipse cx="48" cy="68" rx="5" ry="6.5" fill="#6B4A55"/>
+    <ellipse cx="80" cy="68" rx="5" ry="6.5" fill="#6B4A55"/>
+    <circle cx="49.8" cy="65.4" r="1.9" fill="#fff"/>
+    <circle cx="81.8" cy="65.4" r="1.9" fill="#fff"/>
+    <ellipse cx="34" cy="81" rx="7.5" ry="4.8" fill="#FFB3C6" opacity=".9"/>
+    <ellipse cx="94" cy="81" rx="7.5" ry="4.8" fill="#FFB3C6" opacity=".9"/>
+    <ellipse cx="64" cy="84" rx="15.5" ry="11" fill="#FFD0DE" stroke="#F2A5BC" stroke-width="2.4"/>
+    <ellipse cx="58.6" cy="84" rx="2.3" ry="3.1" fill="#E2839C"/>
+    <ellipse cx="69.4" cy="84" rx="2.3" ry="3.1" fill="#E2839C"/>
+  </symbol>
+
+  <!-- 파츠 -->
+  <symbol id="part-star" viewBox="0 0 32 32"><path d="M16 3l3.6 8.2 8.9.8-6.7 5.9 2 8.7L16 22.2 8.2 26.6l2-8.7L3.5 12l8.9-.8z" fill="currentColor"/></symbol>
+  <symbol id="part-heart" viewBox="0 0 32 32"><path d="M16 27S4.5 19.6 4.5 12.3C4.5 8.4 7.4 5.5 11 5.5c3 0 4.4 2.1 5 3.2.6-1.1 2-3.2 5-3.2 3.6 0 6.5 2.9 6.5 6.8C27.5 19.6 16 27 16 27z" fill="currentColor"/></symbol>
+  <symbol id="coin" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#FFD971" stroke="#E9B23F" stroke-width="3"/><circle cx="20" cy="20" r="12" fill="none" stroke="#F5C95F" stroke-width="2"/><path d="M20 12v16M15 16h10M15 24h10" stroke="#E0A63A" stroke-width="2.4" stroke-linecap="round"/></symbol>
+
+  <!-- 가족 얼굴 : 엄마(토끼) -->
+  <symbol id="av-mom" viewBox="0 0 32 32">
+    <ellipse cx="11.7" cy="7.8" rx="2.8" ry="6.2" fill="#FFFAF2" stroke="#E7C9AC" stroke-width="1.1" transform="rotate(-7 11.7 7.8)"/>
+    <ellipse cx="20.3" cy="7.8" rx="2.8" ry="6.2" fill="#FFFAF2" stroke="#E7C9AC" stroke-width="1.1" transform="rotate(7 20.3 7.8)"/>
+    <ellipse cx="11.9" cy="8.2" rx="1.1" ry="3.4" fill="#FFC9D8"/>
+    <ellipse cx="20.1" cy="8.2" rx="1.1" ry="3.4" fill="#FFC9D8"/>
+    <ellipse cx="16" cy="19.2" rx="9.1" ry="8" fill="#FFF4E7" stroke="#E7C9AC" stroke-width="1.3"/>
+    <ellipse cx="13" cy="18.4" rx="1.25" ry="1.7" fill="#5C463A"/>
+    <ellipse cx="19" cy="18.4" rx="1.25" ry="1.7" fill="#5C463A"/>
+    <ellipse cx="10" cy="22.2" rx="2" ry="1.25" fill="#FFB3C6" opacity=".8"/>
+    <ellipse cx="22" cy="22.2" rx="2" ry="1.25" fill="#FFB3C6" opacity=".8"/>
+    <path d="M15 20.9h2l-1 1.3z" fill="#E892A8"/>
+  </symbol>
+
+  <!-- 가족 얼굴 : 아빠(쥐) -->
+  <symbol id="av-dad" viewBox="0 0 32 32">
+    <circle cx="7.6" cy="12.4" r="4.3" fill="#F8F3FF" stroke="#C6B2E3" stroke-width="1.1"/>
+    <circle cx="24.4" cy="12.4" r="4.3" fill="#F8F3FF" stroke="#C6B2E3" stroke-width="1.1"/>
+    <circle cx="7.6" cy="12.6" r="2.2" fill="#FFC9D8" opacity=".9"/>
+    <circle cx="24.4" cy="12.6" r="2.2" fill="#FFC9D8" opacity=".9"/>
+    <ellipse cx="16" cy="19" rx="9.2" ry="8.2" fill="#FAF5FF" stroke="#C6B2E3" stroke-width="1.3"/>
+    <ellipse cx="13" cy="18" rx="1.25" ry="1.7" fill="#574B63"/>
+    <ellipse cx="19" cy="18" rx="1.25" ry="1.7" fill="#574B63"/>
+    <ellipse cx="9.8" cy="21.6" rx="1.9" ry="1.2" fill="#FFB3C6" opacity=".75"/>
+    <ellipse cx="22.2" cy="21.6" rx="1.9" ry="1.2" fill="#FFB3C6" opacity=".75"/>
+    <ellipse cx="16" cy="21" rx="1.35" ry="1" fill="#E892A8"/>
+    <path d="M6.2 20.2h-2.4M6.4 22.6h-2.4M25.8 20.2h2.4M25.6 22.6h2.4" stroke="#C9B6D9" stroke-width=".8" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 가족 얼굴 : 서준(원숭이) -->
+  <symbol id="av-jun" viewBox="0 0 32 32">
+    <circle cx="6.8" cy="15.6" r="3.7" fill="#FBEAD6" stroke="#D9A97F" stroke-width="1.1"/>
+    <circle cx="25.2" cy="15.6" r="3.7" fill="#FBEAD6" stroke="#D9A97F" stroke-width="1.1"/>
+    <circle cx="6.8" cy="15.6" r="1.8" fill="#FFC9D8" opacity=".85"/>
+    <circle cx="25.2" cy="15.6" r="1.8" fill="#FFC9D8" opacity=".85"/>
+    <ellipse cx="16" cy="18.6" rx="9.3" ry="8.4" fill="#F9E4CE" stroke="#D9A97F" stroke-width="1.3"/>
+    <ellipse cx="16" cy="21.4" rx="5.2" ry="3.4" fill="#FFF7EC"/>
+    <ellipse cx="12.9" cy="17.6" rx="1.25" ry="1.7" fill="#4F3B30"/>
+    <ellipse cx="19.1" cy="17.6" rx="1.25" ry="1.7" fill="#4F3B30"/>
+    <ellipse cx="9.6" cy="21" rx="1.8" ry="1.15" fill="#FFB3C6" opacity=".75"/>
+    <ellipse cx="22.4" cy="21" rx="1.8" ry="1.15" fill="#FFB3C6" opacity=".75"/>
+    <circle cx="14.3" cy="20.8" r=".6" fill="#A87A5E"/>
+    <circle cx="17.7" cy="20.8" r=".6" fill="#A87A5E"/>
+    <path d="M14.6 22.8c.9 1.2 1.9 1.2 2.8 0" stroke="#B8896F" stroke-width=".9" fill="none" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 가족 얼굴 : 서윤(돼지) -->
+  <symbol id="av-yun" viewBox="0 0 32 32">
+    <path d="M9.6 11.2C7.6 6.6 11 4.6 13.2 7.4l1.6 2.4z" fill="#FFEAF1" stroke="#EFA9BE" stroke-width="1"/>
+    <path d="M22.4 11.2C24.4 6.6 21 4.6 18.8 7.4l-1.6 2.4z" fill="#FFEAF1" stroke="#EFA9BE" stroke-width="1"/>
+    <ellipse cx="16" cy="18.8" rx="9.4" ry="8.3" fill="#FFEDF3" stroke="#EFA9BE" stroke-width="1.3"/>
+    <ellipse cx="12.8" cy="17.4" rx="1.25" ry="1.7" fill="#6B4A55"/>
+    <ellipse cx="19.2" cy="17.4" rx="1.25" ry="1.7" fill="#6B4A55"/>
+    <ellipse cx="9.6" cy="21" rx="1.9" ry="1.2" fill="#FFB3C6" opacity=".85"/>
+    <ellipse cx="22.4" cy="21" rx="1.9" ry="1.2" fill="#FFB3C6" opacity=".85"/>
+    <ellipse cx="16" cy="21.6" rx="3.9" ry="2.9" fill="#FFD0DE" stroke="#F2A5BC" stroke-width=".9"/>
+    <ellipse cx="14.6" cy="21.6" rx=".6" ry=".85" fill="#E2839C"/>
+    <ellipse cx="17.4" cy="21.6" rx=".6" ry=".85" fill="#E2839C"/>
+  </symbol>
+</svg>
+
+<!-- ───────── PIN 잠금 ───────── -->
+<div class="lock" id="lockScreen" hidden>
+  <div class="lock-inner">
+    <svg class="lock-cat" aria-hidden="true"><use href="#ch-rabbit"/></svg>
+    <h2>우리 가족만 들어와요 🐾</h2>
+    <p class="lock-sub">가족 PIN 4자리를 눌러주세요</p>
+    <div class="pin-dots" id="pinDots"><i></i><i></i><i></i><i></i></div>
+    <div class="keypad" id="keypad"></div>
+    <p class="lock-msg" id="lockMsg"></p>
+  </div>
+</div>
+
+<!-- ───────── 앱 ───────── -->
+<div class="app" id="app">
+  <header class="topbar">
+    <div class="brand">
+      <svg class="brand-monkey" aria-hidden="true"><use href="#ch-monkey"/></svg>
+      <span class="brand-text">준윤😘</span>
+      <svg class="brand-pig" aria-hidden="true"><use href="#ch-pig"/></svg>
+    </div>
+    <div class="topbar-right">
+      <div class="family-stack" id="familyStack"></div>
+      <button class="round-icon" id="lockBtn" title="화면 잠그기" aria-label="화면 잠그기">🔒</button>
+      <button class="round-icon" id="settingsBtn" title="설정" aria-label="설정">⚙️</button>
+    </div>
+  </header>
+
+  <nav class="chips" id="chips" aria-label="메뉴">
+    <a class="chip" href="#money">🪙 용돈</a>
+    <a class="chip" href="#phrases">💌 한마디</a>
+    <a class="chip" href="#todos">🖐️ 할 일</a>
+    <a class="chip" href="#chat">💬 채팅</a>
+    <a class="chip" href="#timer">⏰ 타이머</a>
+  </nav>
+
+  <main>
+    <!-- 히어로 -->
+    <section class="hero">
+      <div class="hero-text">
+        <p class="hero-date" id="heroDate"></p>
+        <h1 id="heroTitle">준윤이의 하루😘</h1>
+        <p class="hero-sub" id="heroSub">오늘 하루를 기록해요</p>
+      </div>
+      <div class="hero-char">
+        <svg class="hero-small" aria-hidden="true"><use href="#ch-pig"/></svg>
+        <svg class="hero-big" aria-hidden="true"><use href="#ch-monkey"/></svg>
+        <span class="spark s1">✦</span><span class="spark s2">✦</span><span class="spark s3">✧</span>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-label"><span class="st-name" data-name="jun">서준</span> 용돈</span>
+          <strong class="stat-val" id="statJun">0원</strong>
+        </div>
+        <div class="stat">
+          <span class="stat-label"><span class="st-name" data-name="yun">서윤</span> 용돈</span>
+          <strong class="stat-val" id="statYun">0원</strong>
+        </div>
+        <div class="stat">
+          <span class="stat-label">오늘 할 일</span>
+          <strong class="stat-val" id="statTodo">0 / 0</strong>
+        </div>
+        <div class="stat">
+          <span class="stat-label">한마디</span>
+          <strong class="stat-val" id="statMoment">0 / 4</strong>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <!-- 1. 용돈 적립 -->
+      <section class="card" id="money">
+        <div class="card-head">
+          <h2>🪙 공부 용돈 적립</h2>
+          <button class="mini-btn" id="spendBtn">용돈 쓰기</button>
+        </div>
+        <div class="wallet-duo">
+          <button class="wallet-half is-on" type="button" data-kid="jun" id="walletJun">
+            <span class="wh-face"><svg class="av" aria-hidden="true"><use href="#av-jun"/></svg></span>
+            <span class="wh-label"><span class="kid-name" data-name="jun">서준</span> 용돈</span>
+            <strong class="wh-amount" id="balJun">0원</strong>
+            <span class="wh-sub" id="subJun">오늘 +0원</span>
+          </button>
+          <button class="wallet-half" type="button" data-kid="yun" id="walletYun">
+            <span class="wh-face"><svg class="av" aria-hidden="true"><use href="#av-yun"/></svg></span>
+            <span class="wh-label"><span class="kid-name" data-name="yun">서윤</span> 용돈</span>
+            <strong class="wh-amount" id="balYun">0원</strong>
+            <span class="wh-sub" id="subYun">오늘 +0원</span>
+          </button>
+        </div>
+        <div class="kid-tabs" id="moneyTabs" role="tablist" aria-label="용돈 아이 전환">
+          <button class="kid-tab is-on" type="button" data-kid="jun" role="tab" aria-selected="true">🐵 <span class="kid-name" data-name="jun">서준</span></button>
+          <button class="kid-tab" type="button" data-kid="yun" role="tab" aria-selected="false">🐷 <span class="kid-name" data-name="yun">서윤</span></button>
+        </div>
+        <p class="hint">공부를 끝내고 버튼을 누르면 동전이 팡팡! 🪙</p>
+        <div class="earn-list" id="earnList"></div>
+        <button class="dashed-btn" id="addItemBtn">+ 공부 항목 추가</button>
+        <h3 class="mini-title">최근 내역 <span class="muted">(금액은 ✎ 로 수정)</span></h3>
+        <ul class="history" id="historyList"></ul>
+      </section>
+
+      <!-- 3. 할 일 -->
+      <section class="card" id="todos">
+        <div class="card-head">
+          <h2>🖐️ <span id="todoKidName">서준</span>의 오늘의 할 일</h2>
+          <span class="pill" id="todoPill">0 / 0</span>
+        </div>
+        <div class="kid-tabs small" id="todoTabs" role="tablist" aria-label="할 일 아이 전환"></div>
+        <div class="progress"><span id="todoBar"></span></div>
+        <ul class="todo-list" id="todoList"></ul>
+        <form class="add-row" id="todoForm">
+          <input id="todoInput" type="text" maxlength="40" placeholder="할 일 추가 (예: 받아쓰기 1장)" autocomplete="off">
+          <button class="primary" type="submit">추가</button>
+        </form>
+        <p class="hint center">모두 체크하면 하이파이브가 터져요! 🖐️✨</p>
+      </section>
+
+      <!-- 오늘의 한마디 -->
+      <section class="card wide" id="phrases">
+        <div class="card-head">
+          <h2>💌 오늘의 한마디</h2>
+          <span class="pill soft">엄마 · 아빠 · 서준 · 서윤</span>
+        </div>
+        <p class="hint">한 줄씩 적고 <b>저장</b>을 누르면 오늘의 한마디가 남아요.</p>
+        <ul class="phrase-list" id="phraseList">
+          <li class="phrase-row" data-who="mom">
+            <span class="p-face"><svg class="av" aria-hidden="true"><use href="#av-mom"/></svg></span>
+            <span class="p-name" id="pNameMom">엄마</span>
+            <input class="p-input" type="text" maxlength="80" placeholder="오늘 엄마의 한마디" aria-label="엄마 오늘의 한마디" autocomplete="off">
+            <button class="soft p-save" type="button">저장</button>
+            <button class="soft danger p-del" type="button">삭제</button>
+          </li>
+          <li class="phrase-row" data-who="dad">
+            <span class="p-face"><svg class="av" aria-hidden="true"><use href="#av-dad"/></svg></span>
+            <span class="p-name" id="pNameDad">아빠</span>
+            <input class="p-input" type="text" maxlength="80" placeholder="오늘 아빠의 한마디" aria-label="아빠 오늘의 한마디" autocomplete="off">
+            <button class="soft p-save" type="button">저장</button>
+            <button class="soft danger p-del" type="button">삭제</button>
+          </li>
+          <li class="phrase-row" data-who="jun">
+            <span class="p-face"><svg class="av" aria-hidden="true"><use href="#av-jun"/></svg></span>
+            <span class="p-name" id="pNameJun">서준</span>
+            <input class="p-input" type="text" maxlength="80" placeholder="오늘 서준의 한마디" aria-label="서준 오늘의 한마디" autocomplete="off">
+            <button class="soft p-save" type="button">저장</button>
+            <button class="soft danger p-del" type="button">삭제</button>
+          </li>
+          <li class="phrase-row" data-who="yun">
+            <span class="p-face"><svg class="av" aria-hidden="true"><use href="#av-yun"/></svg></span>
+            <span class="p-name" id="pNameYun">서윤</span>
+            <input class="p-input" type="text" maxlength="80" placeholder="오늘 서윤의 한마디" aria-label="서윤 오늘의 한마디" autocomplete="off">
+            <button class="soft p-save" type="button">저장</button>
+            <button class="soft danger p-del" type="button">삭제</button>
+          </li>
+        </ul>
+        <p class="hint tiny" id="phraseStatus"></p>
+      </section>
+
+      <!-- 5. 채팅 -->
+      <section class="card wide" id="chat">
+        <div class="card-head chat-head">
+          <h2>💬 가족 채팅방</h2>
+          <div class="chat-tools">
+            <div class="who-switch" id="whoSwitch"></div>
+            <button class="mini-btn danger" id="clearChat" type="button">대화 비우기</button>
+          </div>
+        </div>
+        <div class="chat-body" id="chatBody"></div>
+        <div class="sticker-tray" id="stickerTray" hidden></div>
+        <form class="chat-input" id="chatForm">
+          <button class="round-icon tray-toggle" type="button" id="stickerBtn" aria-label="스티커 열기">🐵</button>
+          <input id="chatInput" type="text" maxlength="200" placeholder="메시지를 남겨보세요" autocomplete="off">
+          <button class="primary send" type="submit">보내기</button>
+        </form>
+        <p class="hint tiny" id="chatHint">가족과 실시간으로 함께 봐요. (동기화 주소가 없으면 이 기기에만 저장돼요)</p>
+      </section>
+
+      <!-- 6. 타이머 -->
+      <section class="card wide" id="timer">
+        <div class="card-head">
+          <h2>⏰ 공부 타이머 &amp; 태블릿 알람</h2>
+        </div>
+        <div class="timer-grid">
+          <div class="timer-left">
+            <div class="timer-ring">
+              <svg viewBox="0 0 120 120" aria-hidden="true">
+                <circle class="ring-bg" cx="60" cy="60" r="52"></circle>
+                <circle class="ring-fg" id="ringFg" cx="60" cy="60" r="52"></circle>
+              </svg>
+              <div class="timer-center">
+                <span class="timer-time" id="timerTime">10:00</span>
+                <span class="timer-state" id="timerState">준비</span>
+              </div>
+            </div>
+            <div class="dur-row" id="durRow">
+              <button class="dur" data-min="10">10분</button>
+              <button class="dur is-on" data-min="20">20분</button>
+              <button class="dur" data-min="30">30분</button>
+              <button class="dur" data-min="custom">직접</button>
+            </div>
+            <div class="dur-custom" id="durCustom" hidden>
+              <input id="customMin" type="number" min="1" max="180" inputmode="numeric" placeholder="분">
+              <button class="soft" id="customApply">적용</button>
+            </div>
+            <div class="timer-btns">
+              <button class="primary" id="timerStart">시작</button>
+              <button class="soft" id="timerReset">초기화</button>
+            </div>
+          </div>
+          <div class="timer-right">
+            <h3 class="mini-title">🌙 태블릿 끄기 알람</h3>
+            <div class="alarm-row">
+              <input type="time" id="alarmTime" value="20:30" aria-label="알람 시각">
+              <label class="switch">
+                <input type="checkbox" id="alarmOn">
+                <span class="slider"></span>
+              </label>
+            </div>
+            <p class="hint" id="alarmHint">알람을 켜두면 그 시각에 화면 가득 종료 안내가 떠요.</p>
+            <button class="soft wide-btn" id="alarmTest">🔔 소리 미리 듣기</button>
+            <div class="timer-tip">
+              <svg class="tip-pig" aria-hidden="true"><use href="#ch-pig"/></svg>
+              <p>공부 끝나면 돼지처럼 <b>느긋하게 쉬어가요</b> 🐷</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="foot">
+      <svg class="foot-monkey" aria-hidden="true"><use href="#ch-monkey"/></svg>
+      <p>서준이·서윤이의 하루를 차곡차곡 모으는 중 🐵🐷</p>
+    </footer>
+  </main>
+</div>
+
+<!-- ───────── 하이파이브 ───────── -->
+<div class="overlay celebrate" id="highFive" hidden>
+  <div class="confetti" id="confetti"></div>
+  <div class="hf-inner">
+    <div class="hf-chars">
+      <svg class="hf-monkey" aria-hidden="true"><use href="#ch-monkey"/></svg>
+      <span class="hf-hand">🖐️</span>
+      <svg class="hf-pig" aria-hidden="true"><use href="#ch-pig"/></svg>
+    </div>
+    <h2>하이파이브! ✨</h2>
+    <p><b id="hfKidName">서준</b> · 오늘 할 일을 <b>모두</b> 끝냈어요.<br>정말 멋져요, 최고! 🐵🐷</p>
+    <button class="primary big" id="hfClose">짝! 하고 닫기</button>
+  </div>
+</div>
+
+<!-- ───────── 타이머/알람 종료 ───────── -->
+<div class="overlay rest" id="restModal" hidden>
+  <div class="rest-inner">
+    <svg class="rest-char" aria-hidden="true"><use href="#ch-pig"/></svg>
+    <p class="rest-kicker" id="restKicker">타이머 종료</p>
+    <h2 id="restTitle">공부 끝! 🐵</h2>
+    <p id="restMsg">눈을 한 번 감고, 물 한 잔 마셔요 💧</p>
+    <button class="primary big" id="restClose">확인했어요</button>
+  </div>
+</div>
+
+<!-- ───────── 설정 ───────── -->
+<div class="overlay sheet-wrap" id="settingsModal" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-label="설정">
+    <div class="sheet-head">
+      <h2>⚙️ 설정</h2>
+      <button class="round-icon" id="settingsClose" aria-label="닫기">✕</button>
+    </div>
+    <div class="sheet-body">
+      <h3 class="mini-title">가족 이름</h3>
+      <div class="name-grid">
+        <label>엄마 <input type="text" id="nameMom" maxlength="8"></label>
+        <label>아빠 <input type="text" id="nameDad" maxlength="8"></label>
+        <label>서준 <input type="text" id="nameJun" maxlength="8"></label>
+        <label>서윤 <input type="text" id="nameYun" maxlength="8"></label>
+      </div>
+
+      <h3 class="mini-title">가족 PIN 잠금</h3>
+      <label class="row-toggle">
+        <span>PIN 잠금 사용</span>
+        <span class="switch"><input type="checkbox" id="pinToggle"><span class="slider"></span></span>
+      </label>
+      <div class="pin-set" id="pinSet" hidden>
+        <input type="tel" id="pinInput" inputmode="numeric" maxlength="4" placeholder="숫자 4자리">
+        <button class="soft" id="pinSave">저장</button>
+      </div>
+      <p class="hint tiny">링크를 아는 사람이 아무나 들어오지 못하게 막는 간단한 잠금이에요. (PIN을 잊으면 브라우저 저장 데이터를 지워야 해요)</p>
+
+      <h3 class="mini-title">효과음</h3>
+      <label class="row-toggle">
+        <span>동전·알람 소리</span>
+        <span class="switch"><input type="checkbox" id="soundToggle"><span class="slider"></span></span>
+      </label>
+
+      <h3 class="mini-title">가족 실시간 동기화</h3>
+      <p class="hint tiny">준윤 전용 저장소(<b>junyunFamily</b>)로 분리되어 있어서 인봉뿌 대시보드 데이터와 섞이지 않아요. 비워두면 이 기기(브라우저)에만 저장돼요.</p>
+      <div class="sync-row">
+        <input type="url" id="syncUrl" placeholder="https://내프로젝트-default-rtdb.firebaseio.com">
+        <button class="soft" id="syncSave">연결</button>
+      </div>
+      <p class="hint tiny" id="syncStatus">로컬 저장만 사용 중</p>
+
+      <h3 class="mini-title">데이터</h3>
+      <div class="data-row">
+        <button class="soft" id="exportBtn">백업 내보내기</button>
+        <button class="soft danger" id="resetBtn">전체 초기화</button>
+      </div>
+      <p class="hint tiny">준윤😘 · 만든 날 2026.11</p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="assets/app.js?v=20261116a"></script>
+</body>
+</html>

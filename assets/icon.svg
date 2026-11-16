@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFF1F6"/>
+      <stop offset=".5" stop-color="#FFF8EC"/>
+      <stop offset="1" stop-color="#F1E8FF"/>
+    </linearGradient>
+    <linearGradient id="mg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBEBDA"/><stop offset="1" stop-color="#F1D5B6"/>
+    </linearGradient>
+    <linearGradient id="pg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFF3F7"/><stop offset="1" stop-color="#FFDCE7"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="118" fill="url(#bg)"/>
+
+  <!-- 서준 : 원숭이 -->
+  <g transform="translate(26 92) scale(2.15)">
+    <circle cx="24" cy="66" r="15" fill="url(#mg)" stroke="#D9A97F" stroke-width="3.5"/>
+    <circle cx="104" cy="66" r="15" fill="url(#mg)" stroke="#D9A97F" stroke-width="3.5"/>
+    <circle cx="24" cy="66" r="7.5" fill="#FFC9D8" opacity=".9"/>
+    <circle cx="104" cy="66" r="7.5" fill="#FFC9D8" opacity=".9"/>
+    <ellipse cx="64" cy="72" rx="39" ry="34" fill="url(#mg)" stroke="#D9A97F" stroke-width="3.5"/>
+    <ellipse cx="64" cy="84" rx="22" ry="15" fill="#FFF7EC" opacity=".95"/>
+    <ellipse cx="49" cy="66" rx="5" ry="6.5" fill="#4F3B30"/>
+    <ellipse cx="79" cy="66" rx="5" ry="6.5" fill="#4F3B30"/>
+    <circle cx="50.8" cy="63.4" r="1.9" fill="#fff"/>
+    <circle cx="80.8" cy="63.4" r="1.9" fill="#fff"/>
+    <ellipse cx="34" cy="79" rx="7" ry="4.5" fill="#FFB3C6" opacity=".75"/>
+    <ellipse cx="94" cy="79" rx="7" ry="4.5" fill="#FFB3C6" opacity=".75"/>
+    <ellipse cx="59" cy="80" rx="2" ry="2.6" fill="#A87A5E"/>
+    <ellipse cx="69" cy="80" rx="2" ry="2.6" fill="#A87A5E"/>
+    <path d="M62 86.5c1.4 2.6 5.4 2.6 6.8 0" fill="none" stroke="#B8896F" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+
+  <!-- 서윤 : 돼지 -->
+  <g transform="translate(250 250) scale(1.6)">
+    <path d="M32 52c-9-14 2-22 12-12l8 9z" fill="url(#pg)" stroke="#EFA9BE" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M96 52c9-14-2-22-12-12l-8 9z" fill="url(#pg)" stroke="#EFA9BE" stroke-width="3.5" stroke-linejoin="round"/>
+    <ellipse cx="64" cy="74" rx="40" ry="33" fill="url(#pg)" stroke="#EFA9BE" stroke-width="3.5"/>
+    <ellipse cx="48" cy="68" rx="5" ry="6.5" fill="#6B4A55"/>
+    <ellipse cx="80" cy="68" rx="5" ry="6.5" fill="#6B4A55"/>
+    <circle cx="49.8" cy="65.4" r="1.9" fill="#fff"/>
+    <circle cx="81.8" cy="65.4" r="1.9" fill="#fff"/>
+    <ellipse cx="34" cy="81" rx="7.5" ry="4.8" fill="#FFB3C6" opacity=".9"/>
+    <ellipse cx="94" cy="81" rx="7.5" ry="4.8" fill="#FFB3C6" opacity=".9"/>
+    <ellipse cx="64" cy="84" rx="15.5" ry="11" fill="#FFD0DE" stroke="#F2A5BC" stroke-width="2.6"/>
+    <ellipse cx="58.6" cy="84" rx="2.3" ry="3.1" fill="#E2839C"/>
+    <ellipse cx="69.4" cy="84" rx="2.3" ry="3.1" fill="#E2839C"/>
+  </g>
+
+  <path d="M120 420c0-10 8-18 18-18s18 8 18 18c0 16-18 28-18 28s-18-12-18-28z" fill="#FFC2D2" opacity=".9"/>
+  <circle cx="420" cy="118" r="16" fill="#E3D6FF" opacity=".9"/>
+  <path d="M400 392l8 18 19 2-14 13 4 19-17-10-17 10 4-19-14-13 19-2z" fill="#FFD971" opacity=".95"/>
+</svg>
