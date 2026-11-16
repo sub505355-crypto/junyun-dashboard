@@ -887,7 +887,10 @@
   function pushNow() {
     if (!sync.ref || sync.applying) return;
     try {
-      sync.ref.set(JSON.parse(JSON.stringify(state))).catch(() => {
+      const payload = JSON.parse(JSON.stringify(state));
+      // 가족 PIN은 이 기기에만 두는 잠금이라 공개 DB에 올리지 않는다.
+      if (payload.settings) { delete payload.settings.pinHash; delete payload.settings.pinEnabled; }
+      sync.ref.set(payload).catch(() => {
         setSyncStatus('동기화 쓰기 실패 — Firebase 규칙(쓰기 허용)을 확인해 주세요', 'err');
       });
     } catch (e) {
@@ -1020,7 +1023,7 @@
 
     $('#spendBtn').addEventListener('click', () => {
       const who = state.activeKid;
-      const input = prompt(`${kidName(who)}가 쓴 금액을 적어주세요 (예: 500)\n취소를 누르면 그대로 둬요.`, '500');
+      const input = prompt(`${kidName(who)} 용돈에서 쓴 금액을 적어주세요 (예: 500)\n취소를 누르면 그대로 둬요.`, '500');
       if (input === null) return;
       const amount = Math.max(0, Number(String(input).replace(/[^0-9]/g, '')) || 0);
       if (!amount) { toast('금액을 숫자로 적어주세요 🐷'); return; }
