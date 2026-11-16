@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=20261116c">
+<link rel="stylesheet" href="assets/style.css?v=20261116d">
 </head>
 <body>
 
@@ -213,7 +213,7 @@
     <a class="chip" href="#money">🪙 용돈</a>
     <a class="chip" href="#phrases">💌 한마디</a>
     <a class="chip" href="#todos">🖐️ 할 일</a>
-    <a class="chip" href="#chat">💬 채팅</a>
+    <a class="chip" href="#chat" id="chatChip">💬 채팅 <span class="badge chip-badge" id="chipBadge" hidden>0</span></a>
     <a class="chip" href="#timer">⏰ 타이머</a>
   </nav>
 
@@ -341,7 +341,7 @@
       <!-- 5. 채팅 -->
       <section class="card wide" id="chat">
         <div class="card-head chat-head">
-          <h2>💬 가족 채팅방</h2>
+          <h2>💬 가족 채팅방 <span class="badge" id="chatBadge" hidden>0</span></h2>
           <div class="chat-tools">
             <div class="who-switch" id="whoSwitch"></div>
             <button class="mini-btn danger" id="clearChat" type="button">대화 비우기</button>
@@ -495,6 +495,6 @@
 
 <div class="toast" id="toast" hidden></div>
 
-<script src="assets/app.js?v=20261116c"></script>
+<script src="assets/app.js?v=20261116d"></script>
 </body>
 </html>

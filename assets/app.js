@@ -6,6 +6,12 @@
   const DEFAULT_SYNC_URL = 'https://inbongppu-default-rtdb.asia-southeast1.firebasedatabase.app';
   const SYNC_PATH = 'junyunFamily/main';   // 인봉뿌(mongleFamily)와 완전히 분리된 준윤 전용 경로
 
+  // 안 읽은 새 소식 뱃지 — 마지막으로 확인한 항목 id를 이 기기 localStorage에만 남긴다.
+  const SEEN_KEY = KEY + '-seen-v1';
+  const BASE_TITLE = document.title;
+  const seenIds = new Set();
+  let seenReady = false;
+
   const $ = (sel, el = document) => el.querySelector(sel);
   const $$ = (sel, el = document) => Array.from(el.querySelectorAll(sel));
   const uid = () => Math.random().toString(36).slice(2, 9) + Date.now().toString(36).slice(-3);
@@ -121,6 +127,7 @@
   }
 
   let state = load();
+  loadSeen();
 
   function load() {
     try {
@@ -286,8 +293,10 @@
     const who = state.activeKid;
     const item = kidData(who).earnItems.find((i) => i.id === id);
     if (!item) return;
-    kidData(who).history.unshift({ id: uid(), type: 'earn', name: item.name, amount: Number(item.amount) || 0, at: Date.now() });
+    const entry = { id: uid(), type: 'earn', name: item.name, amount: Number(item.amount) || 0, at: Date.now() };
+    kidData(who).history.unshift(entry);
     kidData(who).history = kidData(who).history.slice(0, 80);
+    markSeen('h:' + who + ':' + entry.id);
     save();
     renderWallets(true);
     renderHistory();
@@ -444,9 +453,85 @@
     if (kind) msg.kind = kind;
     state.chat.push(msg);
     if (state.chat.length > 300) state.chat = state.chat.slice(-300);
+    markSeen('c:' + msg.id);
     save();
     renderChat();
     playNotes(kind === 'sticker' ? [880, 1046] : [660], 'sine', 0.09);
+  }
+
+  /* ---------------- 안 읽은 새 소식 ---------------- */
+  // 채팅 · 오늘의 한마디 · 두 아이의 용돈 기록을 하나의 "소식" 목록으로 모아 본다.
+  function feedItems() {
+    const list = [];
+    (state.chat || []).forEach((m) => {
+      if (m && m.id) list.push({ id: 'c:' + m.id, at: m.at || 0 });
+    });
+    PEOPLE.forEach((k) => {
+      const m = state.moments && state.moments[k];
+      if (m && m.text && m.at) list.push({ id: 'p:' + k + ':' + m.at, at: m.at });
+    });
+    KIDS.forEach((k) => {
+      const kd = state.kids && state.kids[k];
+      (kd && Array.isArray(kd.history) ? kd.history : []).forEach((h) => {
+        if (h && h.id) list.push({ id: 'h:' + k + ':' + h.id, at: h.at || 0 });
+      });
+    });
+    return list;
+  }
+
+  function unreadCount() {
+    let n = 0;
+    feedItems().forEach((it) => { if (!seenIds.has(it.id)) n += 1; });
+    return n;
+  }
+
+  function loadSeen() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(SEEN_KEY) || 'null');
+      const ids = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.ids) ? raw.ids : []);
+      if (raw) seenReady = true;
+      ids.forEach((id) => { if (typeof id === 'string') seenIds.add(id); });
+    } catch (e) { /* 저장값이 깨졌으면 처음부터 다시 센다 */ }
+  }
+
+  function saveSeen() {
+    try {
+      localStorage.setItem(SEEN_KEY, JSON.stringify({ ids: Array.from(seenIds).slice(-900), at: Date.now() }));
+    } catch (e) { /* 저장 공간 부족 등 */ }
+  }
+
+  // 이 기기에서 직접 만든 소식은 이미 본 것으로 친다.
+  function markSeen(id) {
+    if (!id || seenIds.has(id)) return;
+    seenIds.add(id);
+    saveSeen();
+    renderUnread();
+  }
+
+  // 채팅방을 확인했을 때: 지금까지 들어온 소식을 모두 읽음 처리한다.
+  function markFeedSeen() {
+    let added = false;
+    feedItems().forEach((it) => {
+      if (!seenIds.has(it.id)) { seenIds.add(it.id); added = true; }
+    });
+    if (added) saveSeen();
+    if (!seenReady) { seenReady = true; saveSeen(); }
+    renderUnread();
+  }
+
+  function renderUnread() {
+    const n = unreadCount();
+    const text = n > 99 ? '99+' : String(n);
+    ['#chatBadge', '#chipBadge'].forEach((sel) => {
+      const el = $(sel);
+      if (!el) return;
+      el.hidden = n === 0;
+      el.textContent = text;
+    });
+    const chip = $('#chatChip');
+    if (chip) chip.classList.toggle('has-unread', n > 0);
+    const title = n > 0 ? `(${text}) ${BASE_TITLE}` : BASE_TITLE;
+    if (document.title !== title) document.title = title;
   }
 
   /* ---------------- 타이머 ---------------- */
@@ -813,13 +898,16 @@
     try {
       const { ok, data: remote } = await fetchRemote(url);
       if (!ok || !remote || !remote.updatedAt) return;
-      const remoteWins = !hasLocalContent() || (remote.updatedAt || 0) > (state.updatedAt || 0) + 60;
+      const baseline = !hasLocalContent();
+      const remoteWins = baseline || (remote.updatedAt || 0) > (state.updatedAt || 0) + 60;
       if (!remoteWins) return;
       sync.applying = true;
       state = normalize(mergeRemote(remote));
       persist(false);
       renderAll();
       sync.applying = false;
+      // 이 기기에서 처음 가족 기록을 받아온 것이면 예전 기록을 '새 소식'으로 세지 않는다.
+      if (baseline) markFeedSeen();
       setSyncStatus('가족 데이터를 불러왔어요 🐵', 'ok');
     } catch (e) {
       /* 오프라인이거나 규칙이 막혀 있으면 로컬로 계속 동작 */
@@ -931,6 +1019,7 @@
       return;
     }
     state.moments[who] = { text: clean, at: Date.now() };
+    markSeen('p:' + who + ':' + state.moments[who].at);
     save();
     renderHero();
     const row = phraseRow(who);
@@ -972,6 +1061,7 @@
     renderChat();
     renderPhrases();
     renderTimerStatic();
+    renderUnread();
   }
 
   /* ---------------- 이벤트 ---------------- */
@@ -1028,7 +1118,9 @@
       const amount = Math.max(0, Number(String(input).replace(/[^0-9]/g, '')) || 0);
       if (!amount) { toast('금액을 숫자로 적어주세요 🐷'); return; }
       const memo = prompt('무엇에 썼나요? (예: 문구점)', '간식') || '사용';
-      kidData(who).history.unshift({ id: uid(), type: 'spend', name: memo, amount, at: Date.now() });
+      const entry = { id: uid(), type: 'spend', name: memo, amount, at: Date.now() };
+      kidData(who).history.unshift(entry);
+      markSeen('h:' + who + ':' + entry.id);
       save();
       renderWallets(true);
       renderHistory();
@@ -1145,6 +1237,18 @@
       renderChat();
       playNotes([420], 'sine', 0.08);
       toast('메시지를 지웠어요 🐵');
+    });
+
+    // 새 소식 뱃지 지우기 : 채팅 입력창·대화창·채팅 메뉴·뱃지를 누르면 읽음 처리
+    ['click', 'focus'].forEach((ev) => $('#chatInput').addEventListener(ev, markFeedSeen));
+    $('#chatBody').addEventListener('click', markFeedSeen);
+    $('#stickerBtn').addEventListener('click', markFeedSeen);
+    const chatChip = $('#chatChip');
+    if (chatChip) chatChip.addEventListener('click', markFeedSeen);
+    const chatBadge = $('#chatBadge');
+    if (chatBadge) chatBadge.addEventListener('click', () => {
+      markFeedSeen();
+      $('#chat').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
     $('#clearChat').addEventListener('click', () => {
       if (!state.chat.length) { toast('지울 대화가 없어요 🐷'); return; }
@@ -1324,6 +1428,8 @@
     buildStickerTray();
     buildTodoTabs();
     renderAll();
+    // 이 기기에서 처음 열었을 때는 이미 있던 기록을 '새 소식'으로 세지 않는다.
+    if (!seenReady) { seenReady = true; markFeedSeen(); }
     updateAlarmHint();
     bind();
     setInterval(checkAlarm, 1000);
