@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=20261116d">
+<link rel="stylesheet" href="assets/style.css?v=20261116e">
 </head>
 <body>
 
@@ -257,6 +257,10 @@
           <h2>🪙 공부 용돈 적립</h2>
           <button class="mini-btn" id="spendBtn">용돈 쓰기</button>
         </div>
+        <div class="recorder" id="moneyWho" role="group" aria-label="지금 기록하는 사람">
+          <span class="recorder-label">✍️ 지금 기록</span>
+          <div class="recorder-btns" id="moneyWhoBtns"></div>
+        </div>
         <div class="wallet-duo">
           <button class="wallet-half is-on" type="button" data-kid="jun" id="walletJun">
             <span class="wh-face"><svg class="av" aria-hidden="true"><use href="#av-jun"/></svg></span>
@@ -275,7 +279,7 @@
           <button class="kid-tab is-on" type="button" data-kid="jun" role="tab" aria-selected="true">🐵 <span class="kid-name" data-name="jun">서준</span></button>
           <button class="kid-tab" type="button" data-kid="yun" role="tab" aria-selected="false">🐷 <span class="kid-name" data-name="yun">서윤</span></button>
         </div>
-        <p class="hint">공부를 끝내고 버튼을 누르면 동전이 팡팡! 🪙</p>
+        <p class="hint">공부를 끝내고 버튼을 누르면 동전이 팡팡! 적은 사람도 내역에 함께 남아요 🪙</p>
         <div class="earn-list" id="earnList"></div>
         <button class="dashed-btn" id="addItemBtn">+ 공부 항목 추가</button>
         <h3 class="mini-title">최근 내역 <span class="muted">(금액은 ✎ 로 수정)</span></h3>
@@ -495,6 +499,6 @@
 
 <div class="toast" id="toast" hidden></div>
 
-<script src="assets/app.js?v=20261116d"></script>
+<script src="assets/app.js?v=20261116e"></script>
 </body>
 </html>

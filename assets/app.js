@@ -149,6 +149,34 @@
   }
 
   /* ---------------- 계산 ---------------- */
+  /* ---------------- 누가 기록했는지 ---------------- */
+  // 동전·지출을 기록한 사람(state.me). 예전 기록은 by가 없으므로 배지를 생략한다.
+  function byBadge(k) {
+    if (!k || !MEMBERS[k]) return '';
+    return `<span class="h-by ${MEMBERS[k].cls}" title="${esc(kidName(k))} 기록">${avHTML(k, 'av')}<span class="h-by-name">${esc(kidName(k))}</span></span>`;
+  }
+
+  function renderMoneyWho() {
+    const box = $('#moneyWhoBtns');
+    if (!box) return;
+    box.innerHTML = PEOPLE.map((k) =>
+      `<button class="rec-btn ${MEMBERS[k].cls} ${state.me === k ? 'on' : ''}" type="button" data-rec="${k}" aria-pressed="${state.me === k ? 'true' : 'false'}">
+        ${avHTML(k, 'av')}<span>${esc(kidName(k))}</span>
+      </button>`
+    ).join('');
+  }
+
+  function setMe(k) {
+    if (!PEOPLE.includes(k) || state.me === k) return;
+    state.me = k;
+    save();
+    renderWho();
+    renderChat();
+    renderMoneyWho();
+    playNotes([700], 'sine', 0.07);
+    toast(`지금부터 ${kidName(k)} 이름으로 기록해요 ✍️`);
+  }
+
   const kidData = (who) => state.kids[who] || (state.kids[who] = kidState(who));
   const balanceOf = (who) => kidData(who).history.reduce((sum, h) => sum + (h.type === 'spend' ? -h.amount : h.amount), 0);
   const spentOf = (who) => kidData(who).history.filter((h) => h.type === 'spend').reduce((s, h) => s + h.amount, 0);
@@ -293,7 +321,7 @@
     const who = state.activeKid;
     const item = kidData(who).earnItems.find((i) => i.id === id);
     if (!item) return;
-    const entry = { id: uid(), type: 'earn', name: item.name, amount: Number(item.amount) || 0, at: Date.now() };
+    const entry = { id: uid(), type: 'earn', name: item.name, amount: Number(item.amount) || 0, at: Date.now(), by: state.me };
     kidData(who).history.unshift(entry);
     kidData(who).history = kidData(who).history.slice(0, 80);
     markSeen('h:' + who + ':' + entry.id);
@@ -331,6 +359,7 @@
         li.dataset.id = h.id;
       } else {
         li.innerHTML = `
+          ${byBadge(h.by)}
           <span class="h-name">${esc(h.name)}</span>
           <span class="h-time">${timeText(h.at)}</span>
           <strong class="h-amt ${spend ? 'spend' : ''}">${spend ? '−' : '+'}${won(h.amount)}</strong>
@@ -823,6 +852,8 @@
     renderChat();
     renderPhrases();
     renderTodos();
+    renderMoneyWho();
+    renderHistory();
     toast('이름을 저장했어요 🐾');
   }
 
@@ -1052,6 +1083,7 @@
   function renderAll() {
     renderNames();
     renderHero();
+    renderMoneyWho();
     renderWallets();
     renderTabs();
     renderEarn();
@@ -1118,7 +1150,7 @@
       const amount = Math.max(0, Number(String(input).replace(/[^0-9]/g, '')) || 0);
       if (!amount) { toast('금액을 숫자로 적어주세요 🐷'); return; }
       const memo = prompt('무엇에 썼나요? (예: 문구점)', '간식') || '사용';
-      const entry = { id: uid(), type: 'spend', name: memo, amount, at: Date.now() };
+      const entry = { id: uid(), type: 'spend', name: memo, amount, at: Date.now(), by: state.me };
       kidData(who).history.unshift(entry);
       markSeen('h:' + who + ':' + entry.id);
       save();
@@ -1208,14 +1240,19 @@
       }
     });
 
+    // 용돈 카드의 "지금 기록" 전환
+    const moneyWho = $('#moneyWho');
+    if (moneyWho) {
+      moneyWho.addEventListener('click', (e) => {
+        const b = e.target.closest('[data-rec]');
+        if (b) setMe(b.dataset.rec);
+      });
+    }
+
     // 채팅
     $('#whoSwitch').addEventListener('click', (e) => {
       const b = e.target.closest('[data-me]');
-      if (!b) return;
-      state.me = b.dataset.me;
-      save();
-      renderWho();
-      renderChat();
+      if (b) setMe(b.dataset.me);
     });
     $('#stickerBtn').addEventListener('click', () => {
       const tray = $('#stickerTray');

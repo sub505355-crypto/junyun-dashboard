@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<title>입력자 표시 확인용 임시 페이지</title>
+</head>
+<body>
+<script>
+/* 임시 검증 페이지: 이 기기 저장소에만 시험용 내역(by 있음/없음 섞음)을 심고 대시보드를 연다.
+   동기화 주소를 비워 실제 가족 Firebase(junyunFamily)에는 아무것도 쓰지 않는다. 검증 후 삭제한다. */
+(function () {
+  try {
+    var KEY = 'junyun-family-v1';
+    var now = Date.now();
+    var d = new Date();
+    var pad = function (n) { return String(n).padStart(2, '0'); };
+    var day = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+    var junHistory = [
+      { id: 'j1', type: 'earn', name: '받아쓰기 1장', amount: 100, at: now - 300000, by: 'mom' },
+      { id: 'j2', type: 'earn', name: '수학 문제집', amount: 200, at: now - 3600000, by: 'dad' },
+      { id: 'j3', type: 'spend', name: '문구점', amount: 500, at: now - 86400000 }
+    ];
+    var yunHistory = [
+      { id: 'y1', type: 'earn', name: '한글 공부', amount: 150, at: now - 600000, by: 'yun' },
+      { id: 'y2', type: 'earn', name: '책 읽어주기', amount: 100, at: now - 5400000, by: 'jun' }
+    ];
+    localStorage.setItem(KEY, JSON.stringify({
+      v: 2, updatedAt: now, activeKid: 'jun', todoKid: 'jun', me: 'yun',
+      settings: { syncUrl: '', syncOn: false },
+      kids: {
+        jun: { history: junHistory, todoDay: day, todos: [], lastHighFive: null },
+        yun: { history: yunHistory, todoDay: day, todos: [], lastHighFive: null }
+      }
+    }));
+    localStorage.setItem(KEY + '-seen-v1', JSON.stringify({
+      ids: junHistory.map(function (h) { return 'h:jun:' + h.id; })
+        .concat(yunHistory.map(function (h) { return 'h:yun:' + h.id; }))
+    }));
+  } catch (e) {}
+  location.replace('./index.html');
+})();
+</script>
+</body>
+</html>

@@ -248,6 +248,25 @@ button.primary:disabled { opacity: .55; box-shadow: 0 4px 0 #F5B7C6; }
 }
 .wallet-half .wh-amount.pulse { animation: pulsePop .5s ease; }
 .wallet-half .wh-sub { font-size: 10.5px; color: #B2925C; }
+
+/* ---------- 누가 기록했는지 ---------- */
+.recorder {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  margin: 0 0 9px;
+}
+.recorder-label { font-size: 11.5px; color: #B2925C; white-space: nowrap; }
+.recorder-btns { display: flex; gap: 5px; flex-wrap: wrap; }
+.rec-btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 10px 4px 5px; border-radius: 999px;
+  font-size: 12px; color: #A88E7C; background: #FFFCF7;
+  border: 1.5px solid #F1E2D4;
+}
+.rec-btn .av { width: 18px; height: 18px; }
+.rec-btn.on { background: var(--pink); color: #B4577A; border-color: #fff; box-shadow: var(--shadow-soft); font-weight: 700; }
+.rec-btn.dad.on { background: var(--lav); color: #7B62B8; }
+.rec-btn.jun.on { background: #FFEBCF; color: #B5793A; }
+.rec-btn.yun.on { background: #FFD9E4; color: #C2436E; }
 .wallet-half.is-on { background: linear-gradient(160deg, #FFF6DA, #FFE9C9); border-color: #F1D59B; box-shadow: 0 8px 18px -12px rgba(210,150,60,.9); }
 .wallet-half[data-kid="yun"] .wh-amount { color: #D96E92; }
 .wallet-half[data-kid="yun"].is-on { background: linear-gradient(160deg, #FFF1F6, #FFE1EB); border-color: #F6CFDC; box-shadow: 0 8px 18px -12px rgba(220,120,150,.9); }
@@ -306,6 +325,21 @@ button.primary:disabled { opacity: .55; box-shadow: 0 4px 0 #F5B7C6; }
 .h-amt { font-family: var(--font-title); font-size: 13.5px; color: #E2708E; white-space: nowrap; }
 .h-amt.spend { color: #7EA9CF; }
 .h-edit { width: 26px; height: 26px; border-radius: 9px; background: #fff; border: 1.5px solid #F6EBDE; font-size: 11px; color: #B7A697; }
+.h-by {
+  display: inline-flex; align-items: center; gap: 3px; flex: 0 0 auto;
+  padding: 2px 7px 2px 3px; border-radius: 999px;
+  font-size: 10.5px; line-height: 1.25; white-space: nowrap;
+  background: #F7EFE7; color: #9C8272;
+}
+.h-by .av { width: 14px; height: 14px; }
+.h-by.mom { background: #FFE9F0; color: #B4577A; }
+.h-by.dad { background: #EFE8FF; color: #7B62B8; }
+.h-by.jun { background: #FFF1E0; color: #B5793A; }
+.h-by.yun { background: #FFE6EE; color: #C2436E; }
+@media (max-width: 380px) {
+  .h-by-name { display: none; }
+  .h-by { padding: 2px 4px; }
+}
 .history .empty, .todo-list .empty { color: #BCA995; font-size: 12.5px; justify-content: center; border-style: dashed; }
 .history li.editing { display: block; }
 .history li.editing .row2 { display: flex; gap: 6px; margin-top: 6px; }
